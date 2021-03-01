@@ -22,7 +22,11 @@ struct CheckView: View {
     }
     var body: some View {
         HStack{
-            Button(action: toggle) {
+            Button(action: {
+                if selectedTypes.count < 2 || isChecked == true {
+                    toggle()
+                }
+            }) {
                 Image(systemName: isChecked ? "checkmark.square" : "square")
             }
             Text(title)

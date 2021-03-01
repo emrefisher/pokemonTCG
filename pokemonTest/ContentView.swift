@@ -82,22 +82,31 @@ struct PlayerOneView: View {
                                 .border(((card.position == 0) ? Color.red : Color.green), width: 5)
                             
                             //CARD TYPE
-                            VStack {
-                            Button("Type") {
-                                viewModel.clickedCard = card.position
-                                showingTypes.toggle()
+                            if card.types.count == 0 {
+                                VStack {
+                                Button(action: {
+                                    viewModel.clickedCard = card.position
+                                    showingTypes.toggle()
+                                }) {
+                                    Text("Add Types").foregroundColor(.black)
+                                }
+                                    Spacer()
+                                }.padding(.top, 15)
+                                .sheet(isPresented: $showingTypes) {
+                                    TypeListView(isPresented: $showingTypes, viewModel: viewModel)
+                                }
                             }
-                            .sheet(isPresented: $showingTypes) {
-                                TypeListView(isPresented: $showingTypes, viewModel: viewModel)
-                            }
-                            
-                            if viewModel.playerOneData[card.position].types.count != 0 {
-                                Text("\(viewModel.playerOneData[card.position].types[0])")
+                            else {
                                 
+                                VStack {
+                                    Image(card.types[0])
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: UIScreen.main.bounds.width/10)
+                                    Spacer()
+                                }.padding(.top, 15)
+
                             }
-                                Spacer()
-                            }
-                            Spacer()
                             //CARD STATUS
                             VStack {
                             Button("Status") {
