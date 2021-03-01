@@ -56,6 +56,7 @@ struct PlayerOneView: View {
     
     @State var isSwitching = false
     @State var showingTypes = false
+    @State var showingStatus = false
 //    @Binding var data: [IndividualCard]
     @ObservedObject var viewModel: ViewModel
     
@@ -80,7 +81,8 @@ struct PlayerOneView: View {
                                 .frame(width: UIScreen.main.bounds.width/8, height: UIScreen.main.bounds.height/2)
                                 .border(((card.position == 0) ? Color.red : Color.green), width: 5)
                             
-                            
+                            //CARD TYPE
+                            VStack {
                             Button("Type") {
                                 viewModel.clickedCard = card.position
                                 showingTypes.toggle()
@@ -91,10 +93,27 @@ struct PlayerOneView: View {
                             
                             if viewModel.playerOneData[card.position].types.count != 0 {
                                 Text("\(viewModel.playerOneData[card.position].types[0])")
+                                
+                            }
+                                Spacer()
+                            }
+                            Spacer()
+                            //CARD STATUS
+                            VStack {
+                            Button("Status") {
+                                viewModel.clickedCard = card.position
+                                showingStatus.toggle()
+                            }
+                            .sheet(isPresented: $showingStatus) {
+                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel)
+                            }
+                            
+                                Text("\(viewModel.playerOneData[card.position].status)")
                             }
                             
                             
                         }
+                        //SWITCHING MECHANIC
                         if isSwitching {
                             Button("Tag-In") {
                                 withAnimation {
@@ -189,7 +208,7 @@ CheckView(isChecked: item.isChecked, title: item.title)
 
 class ViewModel: ObservableObject {
     
-    @Published var playerOneData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "Burned", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "Asleep", damageTaken: 0, types: [String]())]
+    @Published var playerOneData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "None", damageTaken: 0, types: [String]())]
     
     @Published var playerTwoData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "Burned", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "Asleep", damageTaken: 0, types: [String]())]
     

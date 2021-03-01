@@ -17,6 +17,9 @@
 		C34AFA1025E872D3000A6233 /* checkListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AFA0F25E872D3000A6233 /* checkListItem.swift */; };
 		C34AFA1625E87681000A6233 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AFA1525E87681000A6233 /* CheckView.swift */; };
 		C34AFA1B25E87AFD000A6233 /* TypeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AFA1A25E87AFD000A6233 /* TypeListView.swift */; };
+		C3C15AB025EC86FE006F051B /* checkListType2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C15AAF25EC86FE006F051B /* checkListType2.swift */; };
+		C3C15AB525EC8845006F051B /* TypeListView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C15AB425EC8845006F051B /* TypeListView2.swift */; };
+		C3C15ABA25EC887A006F051B /* CheckView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C15AB925EC887A006F051B /* CheckView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		C34AFA0F25E872D3000A6233 /* checkListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkListItem.swift; sourceTree = "<group>"; };
 		C34AFA1525E87681000A6233 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
 		C34AFA1A25E87AFD000A6233 /* TypeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeListView.swift; sourceTree = "<group>"; };
+		C3C15AAF25EC86FE006F051B /* checkListType2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkListType2.swift; sourceTree = "<group>"; };
+		C3C15AB425EC8845006F051B /* TypeListView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeListView2.swift; sourceTree = "<group>"; };
+		C3C15AB925EC887A006F051B /* CheckView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,8 @@
 				C34AF9DD25E86E83000A6233 /* Preview Content */,
 				C34AFA1525E87681000A6233 /* CheckView.swift */,
 				C34AFA1A25E87AFD000A6233 /* TypeListView.swift */,
+				C3C15AB425EC8845006F051B /* TypeListView2.swift */,
+				C3C15AB925EC887A006F051B /* CheckView2.swift */,
 			);
 			path = pokemonTest;
 			sourceTree = "<group>";
@@ -146,6 +154,7 @@
 			children = (
 				C34AFA0725E872AC000A6233 /* checkListType.swift */,
 				C34AFA0F25E872D3000A6233 /* checkListItem.swift */,
+				C3C15AAF25EC86FE006F051B /* checkListType2.swift */,
 			);
 			path = Checklist;
 			sourceTree = "<group>";
@@ -280,9 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34AFA1B25E87AFD000A6233 /* TypeListView.swift in Sources */,
+				C3C15AB525EC8845006F051B /* TypeListView2.swift in Sources */,
+				C3C15AB025EC86FE006F051B /* checkListType2.swift in Sources */,
 				C34AF9DA25E86E81000A6233 /* ContentView.swift in Sources */,
 				C34AF9D825E86E81000A6233 /* pokemonTestApp.swift in Sources */,
 				C34AFA0825E872AC000A6233 /* checkListType.swift in Sources */,
+				C3C15ABA25EC887A006F051B /* CheckView2.swift in Sources */,
 				C34AFA1025E872D3000A6233 /* checkListItem.swift in Sources */,
 				C34AFA1625E87681000A6233 /* CheckView.swift in Sources */,
 			);
