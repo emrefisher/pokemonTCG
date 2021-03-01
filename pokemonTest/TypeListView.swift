@@ -10,14 +10,15 @@ import SwiftUI
 
 struct TypeListView: View {
     @Binding var isPresented: Bool
-    @Binding var selectedTypes: [String]
+    @ObservedObject var viewModel: ViewModel
+    
    // @Binding var selectedTypes: [String]
     var body: some View {
         Button("Back") {
             isPresented.toggle()
         }
         List(checkListData){ item in
-            CheckView(isChecked: item.isChecked, selectedTypes: $selectedTypes, title: item.title)
+            CheckView(isChecked: item.isChecked, selectedTypes: $viewModel.playerOneData[viewModel.clickedCard].types, title: item.title)
         }
         .font(.title)
     }

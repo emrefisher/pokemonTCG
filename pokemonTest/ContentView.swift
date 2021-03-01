@@ -15,7 +15,10 @@ struct GameView: View {
     
     @State var playerTwoData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "Burned", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "Asleep", damageTaken: 0, types: [String]())]
     
+    @ObservedObject var viewModel = ViewModel()
+    
     var body: some View {
+        
         VStack {
             HStack {
                 Spacer()
@@ -26,19 +29,19 @@ struct GameView: View {
                 .frame(width: UIScreen.main.bounds.width / 4)
                 Spacer()
                 Button("New Game", action: {
-                    for card in 0..<playerOneData.count {
-                        playerOneData[card].status = "None"
-                        playerOneData[card].damageTaken = 0
+                    for card in 0..<viewModel.playerOneData.count {
+                        viewModel.playerOneData[card].status = "None"
+                        viewModel.playerOneData[card].damageTaken = 0
                     }
                     for card in 0..<playerTwoData.count {
-                        playerTwoData[card].status = "None"
-                        playerTwoData[card].damageTaken = 0
+                        viewModel.playerTwoData[card].status = "None"
+                        viewModel.playerTwoData[card].damageTaken = 0
                     }
                 })
             }
             Spacer()
             if showingPlayerOne == 0 {
-                PlayerOneView(data: $playerOneData)
+                PlayerOneView(viewModel: viewModel)
             }
             else {
                 PlayerTwoView(data: $playerTwoData)
@@ -51,9 +54,9 @@ struct GameView: View {
 struct PlayerOneView: View {
     
     @State var isSwitching = false
-    @State  var showingTypes = false
-    @Binding var data: [IndividualCard]
-    @State var selectedTypes = [String]()
+    @State var showingTypes = false
+//    @Binding var data: [IndividualCard]
+    @ObservedObject var viewModel: ViewModel
     
     let columns = [
         GridItem(.flexible()),
@@ -67,7 +70,7 @@ struct PlayerOneView: View {
     var body: some View {
         VStack {
             LazyVGrid(columns: columns, content: {
-                ForEach(data) { card in
+                ForEach(viewModel.playerOneData) { card in
                     
                     VStack {
                         ZStack {
@@ -78,23 +81,25 @@ struct PlayerOneView: View {
                             
                             
                             Button("Type") {
+                                viewModel.clickedCard = card.position
                                 showingTypes.toggle()
-                            }.sheet(isPresented: $showingTypes, onDismiss: {data[card.position].types = selectedTypes
-                                selectedTypes = [String]()
-                            }) {
-                                TypeListView(isPresented: $showingTypes, selectedTypes: $selectedTypes)
                             }
-                                Text("\(data[card.position].types.count)")
+                            .sheet(isPresented: $showingTypes) {
+                                TypeListView(isPresented: $showingTypes, viewModel: viewModel)
+                            }
                             
+                            if viewModel.playerOneData[card.position].types.count != 0 {
+                                Text("\(viewModel.playerOneData[card.position].types[0])")
+                            }
                             
                             
                         }
                         if isSwitching {
                             Button("Tag-In") {
                                 withAnimation {
-                                    data[0].position = card.position
-                                    data[card.position].position = 0
-                                    data.sort {
+                                    viewModel.playerOneData[0].position = card.position
+                                    viewModel.playerOneData[card.position].position = 0
+                                    viewModel.playerOneData.sort {
                                         $0.position < $1.position
                                     }
                                 }
@@ -104,6 +109,7 @@ struct PlayerOneView: View {
                     }
                 }
             })
+            
             Button(action: {
                 self.isSwitching.toggle()
             }) {
@@ -179,3 +185,13 @@ struct IndividualCard: Identifiable {
 CheckView(isChecked: item.isChecked, title: item.title)
 }
 .font(.title)*/
+
+class ViewModel: ObservableObject {
+    
+    @Published var playerOneData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "Burned", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "Asleep", damageTaken: 0, types: [String]())]
+    
+    @Published var playerTwoData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "Burned", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "Asleep", damageTaken: 0, types: [String]())]
+    
+    @Published var clickedCard = -1
+    
+}
