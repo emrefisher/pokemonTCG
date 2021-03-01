@@ -11,14 +11,13 @@ struct GameView: View {
     
     @State var showingPlayerOne = 0
     
-    @State var playerOneData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "Burned", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "Asleep", damageTaken: 0, types: [String]())]
-    
-    @State var playerTwoData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "Burned", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "Asleep", damageTaken: 0, types: [String]())]
-    
     @ObservedObject var viewModel = ViewModel()
     
     var body: some View {
-        
+        ZStack {
+            Rectangle()
+                .fill(Color.black)
+                .edgesIgnoringSafeArea(.all)
         VStack {
             HStack {
                 Spacer()
@@ -33,7 +32,7 @@ struct GameView: View {
                         viewModel.playerOneData[card].status = "None"
                         viewModel.playerOneData[card].damageTaken = 0
                     }
-                    for card in 0..<playerTwoData.count {
+                    for card in 0..<viewModel.playerTwoData.count {
                         viewModel.playerTwoData[card].status = "None"
                         viewModel.playerTwoData[card].damageTaken = 0
                     }
@@ -44,10 +43,12 @@ struct GameView: View {
                 PlayerOneView(viewModel: viewModel)
             }
             else {
-                PlayerTwoView(data: $playerTwoData)
+                PlayerTwoView(data: $viewModel.playerTwoData)
             }
             Spacer()
         }.padding(.top, UIScreen.main.bounds.height/15)
+        }
+
     }
 }
 
@@ -75,7 +76,7 @@ struct PlayerOneView: View {
                     VStack {
                         ZStack {
                             Rectangle()
-                                .fill(Color.blue)
+                                .fill(Color.white.opacity(0.6))
                                 .frame(width: UIScreen.main.bounds.width/8, height: UIScreen.main.bounds.height/2)
                                 .border(((card.position == 0) ? Color.red : Color.green), width: 5)
                             
