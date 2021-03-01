@@ -16,14 +16,26 @@ struct CheckView2: View {
         if (isChecked) {
             selectedStatus = title
         }
+        else {
+            selectedStatus = "None"
+        }
     }
     var body: some View {
         HStack{
-            Button(action: toggle) {
+            Button(action: {
+                if (selectedStatus == "None" || isChecked == true) {
+                toggle()
+                }
+            })
+            {
                 Image(systemName: isChecked ? "checkmark.square" : "square")
             }
             Text(title)
-        }
+        }.onAppear(perform: {
+            if(selectedStatus == title) {
+                isChecked = true
+                }
+        })
     }
 }
 
