@@ -99,10 +99,13 @@ struct PlayerOneView: View {
                             else {
                                 
                                 VStack {
-                                    Image(card.types[0])
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: UIScreen.main.bounds.width/10)
+                                    ForEach(viewModel.playerOneData[card.position].types, id: \.self) {type in
+                                        Image(type)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: UIScreen.main.bounds.width/10)
+                                    }
+
                                     Spacer()
                                 }.padding(.top, 15)
 
