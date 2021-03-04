@@ -1,5 +1,5 @@
 //
-//  player1View.swift
+//  player2View.swift
 //  pokemonTest
 //
 //  Created by Emre Fisher on 3/3/21.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct PlayerOneView: View {
+struct PlayerTwoView: View {
     
     @State var isSwitching = false
     @State var showingTypes = false
@@ -28,7 +28,7 @@ struct PlayerOneView: View {
     var body: some View {
         VStack {
             LazyVGrid(columns: columns, content: {
-                ForEach(viewModel.playerOneData) { card in
+                ForEach(viewModel.playerTwoData) { card in
                     
                     VStack {
                         ZStack {
@@ -49,13 +49,13 @@ struct PlayerOneView: View {
                                     Spacer()
                                 }.padding(.top, 15)
                                 .sheet(isPresented: $showingTypes) {
-                                    TypeListView(isPresented: $showingTypes, viewModel: viewModel)
+                                    TypeListView(isPresented: $showingTypes, viewModel: viewModel, player: 2)
                                 }
                             }
                             else {
                                 
                                 VStack(spacing: 1) {
-                                    ForEach(viewModel.playerOneData[card.position].types, id: \.self) {type in
+                                    ForEach(viewModel.playerTwoData[card.position].types, id: \.self) {type in
                                         Image(type)
                                             .resizable()
                                            // .scaledToFit()
@@ -74,10 +74,10 @@ struct PlayerOneView: View {
                                 showingStatus.toggle()
                             }
                             .sheet(isPresented: $showingStatus) {
-                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel)
+                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 2)
                             }
                             
-                                Text("\(viewModel.playerOneData[card.position].status)")
+                                Text("\(viewModel.playerTwoData[card.position].status)")
                             }
                             
                             
@@ -99,9 +99,9 @@ struct PlayerOneView: View {
                         if isSwitching {
                             Button("Tag-In") {
                                 withAnimation {
-                                    viewModel.playerOneData[0].position = card.position
-                                    viewModel.playerOneData[card.position].position = 0
-                                    viewModel.playerOneData.sort {
+                                    viewModel.playerTwoData[0].position = card.position
+                                    viewModel.playerTwoData[card.position].position = 0
+                                    viewModel.playerTwoData.sort {
                                         $0.position < $1.position
                                     }
                                 }

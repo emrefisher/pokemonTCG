@@ -90,6 +90,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A786BF4325F0638E006E9855 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C34AF9D925E86E81000A6233 /* ContentView.swift */,
+				C3C15ABE25F062A6006F051B /* player1View.swift */,
+				C3C15AC325F062B5006F051B /* player2View.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C34AF9CB25E86E81000A6233 = {
 			isa = PBXGroup;
 			children = (
@@ -113,9 +123,9 @@
 		C34AF9D625E86E81000A6233 /* pokemonTest */ = {
 			isa = PBXGroup;
 			children = (
+				A786BF4325F0638E006E9855 /* Views */,
 				C34AFA0625E8728C000A6233 /* Checklist */,
 				C34AF9D725E86E81000A6233 /* pokemonTestApp.swift */,
-				C34AF9D925E86E81000A6233 /* ContentView.swift */,
 				C34AF9DB25E86E83000A6233 /* Assets.xcassets */,
 				C34AF9E025E86E83000A6233 /* Info.plist */,
 				C34AF9DD25E86E83000A6233 /* Preview Content */,
@@ -123,8 +133,6 @@
 				C34AFA1A25E87AFD000A6233 /* TypeListView.swift */,
 				C3C15AB425EC8845006F051B /* TypeListView2.swift */,
 				C3C15AB925EC887A006F051B /* CheckView2.swift */,
-				C3C15ABE25F062A6006F051B /* player1View.swift */,
-				C3C15AC325F062B5006F051B /* player2View.swift */,
 			);
 			path = pokemonTest;
 			sourceTree = "<group>";

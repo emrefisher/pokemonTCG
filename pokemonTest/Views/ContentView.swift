@@ -43,7 +43,7 @@ struct GameView: View {
                 PlayerOneView(viewModel: viewModel)
             }
             else {
-                PlayerTwoView(data: $viewModel.playerTwoData)
+                PlayerTwoView(viewModel: viewModel)
             }
             Spacer()
         }.padding(.top, UIScreen.main.bounds.height/15)
@@ -74,7 +74,7 @@ class ViewModel: ObservableObject {
     
     @Published var playerOneData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "None", damageTaken: 0, types: [String]())]
     
-    @Published var playerTwoData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "Burned", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "Asleep", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "Asleep", damageTaken: 0, types: [String]())]
+    @Published var playerTwoData = [IndividualCard(id: "Card 0", position: 0, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 1", position: 1, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 2", position: 2, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 3", position: 3, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 4", position: 4, status: "None", damageTaken: 0, types: [String]()), IndividualCard(id: "Card 5", position: 5, status: "None", damageTaken: 0, types: [String]())]
     
     @Published var clickedCard = -1
     
