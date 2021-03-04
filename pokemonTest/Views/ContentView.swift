@@ -31,10 +31,12 @@ struct GameView: View {
                     for card in 0..<viewModel.playerOneData.count {
                         viewModel.playerOneData[card].status = "None"
                         viewModel.playerOneData[card].damageTaken = 0
+                        viewModel.playerOneData[card].types = [String]()
                     }
                     for card in 0..<viewModel.playerTwoData.count {
                         viewModel.playerTwoData[card].status = "None"
                         viewModel.playerTwoData[card].damageTaken = 0
+                        viewModel.playerTwoData[card].types = [String]()
                     }
                 })
             }
