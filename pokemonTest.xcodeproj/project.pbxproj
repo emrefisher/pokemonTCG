@@ -20,6 +20,8 @@
 		C3C15AB025EC86FE006F051B /* checkListType2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C15AAF25EC86FE006F051B /* checkListType2.swift */; };
 		C3C15AB525EC8845006F051B /* TypeListView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C15AB425EC8845006F051B /* TypeListView2.swift */; };
 		C3C15ABA25EC887A006F051B /* CheckView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C15AB925EC887A006F051B /* CheckView2.swift */; };
+		C3C15ABF25F062A6006F051B /* player1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C15ABE25F062A6006F051B /* player1View.swift */; };
+		C3C15AC425F062B5006F051B /* player2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C15AC325F062B5006F051B /* player2View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		C3C15AAF25EC86FE006F051B /* checkListType2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkListType2.swift; sourceTree = "<group>"; };
 		C3C15AB425EC8845006F051B /* TypeListView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeListView2.swift; sourceTree = "<group>"; };
 		C3C15AB925EC887A006F051B /* CheckView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView2.swift; sourceTree = "<group>"; };
+		C3C15ABE25F062A6006F051B /* player1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player1View.swift; sourceTree = "<group>"; };
+		C3C15AC325F062B5006F051B /* player2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player2View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 				C34AFA1A25E87AFD000A6233 /* TypeListView.swift */,
 				C3C15AB425EC8845006F051B /* TypeListView2.swift */,
 				C3C15AB925EC887A006F051B /* CheckView2.swift */,
+				C3C15ABE25F062A6006F051B /* player1View.swift */,
+				C3C15AC325F062B5006F051B /* player2View.swift */,
 			);
 			path = pokemonTest;
 			sourceTree = "<group>";
@@ -291,12 +297,14 @@
 				C34AFA1B25E87AFD000A6233 /* TypeListView.swift in Sources */,
 				C3C15AB525EC8845006F051B /* TypeListView2.swift in Sources */,
 				C3C15AB025EC86FE006F051B /* checkListType2.swift in Sources */,
+				C3C15ABF25F062A6006F051B /* player1View.swift in Sources */,
 				C34AF9DA25E86E81000A6233 /* ContentView.swift in Sources */,
 				C34AF9D825E86E81000A6233 /* pokemonTestApp.swift in Sources */,
 				C34AFA0825E872AC000A6233 /* checkListType.swift in Sources */,
 				C3C15ABA25EC887A006F051B /* CheckView2.swift in Sources */,
 				C34AFA1025E872D3000A6233 /* checkListItem.swift in Sources */,
 				C34AFA1625E87681000A6233 /* CheckView.swift in Sources */,
+				C3C15AC425F062B5006F051B /* player2View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
