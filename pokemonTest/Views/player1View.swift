@@ -78,8 +78,10 @@ struct PlayerOneView: View {
                                         viewModel.playerOneData[card.position].damageTaken += 10
                                     }
                                 }
-                                Button("Clear Damage") {
+                                Button("Clear Card") {
+                                    viewModel.playerOneData[card.position].status = "None"
                                     viewModel.playerOneData[card.position].damageTaken = 0
+                                    viewModel.playerOneData[card.position].types = [String]()
                                 }
                             }.padding(.horizontal, 5)
                             
@@ -96,7 +98,7 @@ struct PlayerOneView: View {
                             }
                             
                             }.padding(.bottom, 7.5)
-
+                            }
                             else {
                                 VStack(spacing: 1) {
                                     Spacer()
