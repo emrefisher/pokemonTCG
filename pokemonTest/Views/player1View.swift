@@ -86,30 +86,37 @@ struct PlayerOneView: View {
                             }.padding(.horizontal, 5)
                             
                             //CARD STATUS
-                            if card.status == "None" {
-                            VStack {
-                                Spacer()
-                            Button("Add Status") {
-                                viewModel.clickedCard = card.position
-                                showingStatus.toggle()
-                            }
-                            .sheet(isPresented: $showingStatus) {
-                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 1)
-                            }
-                            
-                            }.padding(.bottom, 7.5)
-                            }
-                            else {
-                                VStack(spacing: 1) {
-                                    Spacer()
-                                    HStack(spacing: 1) {
+                            ZStack {
+                                if card.status == "None" {
+                                    VStack {
                                         Spacer()
-                                Image(card.status)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 75, height: 75)
-                                    }
-                                }.offset(x: 5, y: 10)
+                                        Button("Add Status") {
+                                            viewModel.clickedCard = card.position
+                                            showingStatus.toggle()
+                                        }
+                                        
+                                    }.padding(.bottom, 7.5)
+                                }
+                                else {
+                                    VStack(spacing: 1) {
+                                        Spacer()
+                                        HStack(spacing: 1) {
+                                            Spacer()
+                                            Button(action: {
+                                                viewModel.clickedCard = card.position
+                                                showingStatus.toggle()
+                                            }) {
+                                                Image(card.status)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 75, height: 75)
+                                            }
+                                            
+                                        }
+                                    }.offset(x: 5, y: 10)
+                                }
+                            }.sheet(isPresented: $showingStatus) {
+                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 1)
                             }
                         }
                         //SWITCHING MECHANIC
