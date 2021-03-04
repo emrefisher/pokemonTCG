@@ -66,10 +66,28 @@ struct PlayerOneView: View {
                                 }.padding(.top, 5)
 
                             }
+                            
+                            
+                            VStack {
+                                HStack {
+                                    Button("-") {
+                                        viewModel.playerOneData[card.position].damageTaken -= 10
+                                    }
+                                    Text("\(viewModel.playerOneData[card.position].damageTaken)")
+                                    Button("+") {
+                                        viewModel.playerOneData[card.position].damageTaken += 10
+                                    }
+                                }
+                                Button("Clear Damage") {
+                                    viewModel.playerOneData[card.position].damageTaken = 0
+                                }
+                            }.padding(.horizontal, 5)
+                            
                             //CARD STATUS
                             if card.status == "None" {
                             VStack {
-                            Button("Status") {
+                                Spacer()
+                            Button("Add Status") {
                                 viewModel.clickedCard = card.position
                                 showingStatus.toggle()
                             }
@@ -77,11 +95,8 @@ struct PlayerOneView: View {
                                 TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 1)
                             }
                             
-                                Text("\(viewModel.playerOneData[card.position].status)")
-                            }
-                            
-                            
-                        }
+                            }.padding(.bottom, 7.5)
+
                             else {
                                 VStack(spacing: 1) {
                                     Spacer()
