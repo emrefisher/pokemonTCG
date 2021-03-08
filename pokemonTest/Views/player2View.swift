@@ -68,8 +68,8 @@ struct PlayerTwoView: View {
                             }
                             
                             //CARD DAMAGE
-                            VStack {
-                                HStack {
+                            VStack(spacing: 0) {
+                                HStack(spacing: 0) {
                                     Button(action: {
                                         viewModel.playerTwoData[card.position].damageTaken -= 10
                                     }) {
@@ -77,16 +77,21 @@ struct PlayerTwoView: View {
                                             .trim(from: 0.25, to: 0.75)
                                             .fill(Color.red)
                                             .frame(width: 40, height: 40))
+                                            .rotationEffect(.degrees(180))
+                                            .offset(x: -5)
                                     }
+                                    Spacer()
                                     Text("\(viewModel.playerTwoData[card.position].damageTaken)")
+                                    Spacer()
                                     Button(action: {
                                         viewModel.playerTwoData[card.position].damageTaken += 10
                                     }) {
-                                        Text("   +").background(Circle()
+                                        Text("+  ").background(Circle()
                                             .trim(from: 0.25, to: 0.75)
                                             .fill(Color.green)
                                             .frame(width: 40, height: 40)
-                                            .rotationEffect(.degrees(180)))
+                                                                .offset(x: 4)
+                                            )
                                     }
                                 }
                                 Button("Clear Card") {
