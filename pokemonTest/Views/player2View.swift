@@ -66,8 +66,74 @@ struct PlayerTwoView: View {
                                 }.padding(.top, 5)
 
                             }
+                            
+                            //CARD DAMAGE
+                            VStack {
+                                HStack {
+                                    Button(action: {
+                                        viewModel.playerTwoData[card.position].damageTaken -= 10
+                                    }) {
+                                        Text("-   ").background(Circle()
+                                            .trim(from: 0.25, to: 0.75)
+                                            .fill(Color.red)
+                                            .frame(width: 40, height: 40))
+                                    }
+                                    Text("\(viewModel.playerTwoData[card.position].damageTaken)")
+                                    Button(action: {
+                                        viewModel.playerTwoData[card.position].damageTaken += 10
+                                    }) {
+                                        Text("   +").background(Circle()
+                                            .trim(from: 0.25, to: 0.75)
+                                            .fill(Color.green)
+                                            .frame(width: 40, height: 40)
+                                            .rotationEffect(.degrees(180)))
+                                    }
+                                }
+                                Button("Clear Card") {
+                                    viewModel.playerTwoData[card.position].status = "None"
+                                    viewModel.playerTwoData[card.position].damageTaken = 0
+                                    viewModel.playerTwoData[card.position].types = [String]()
+                                }
+                            }.padding(.horizontal, 5)
+                            
+                            
+                                
+                
                             //CARD STATUS
-                            if card.status == "None" {
+                            //CARD STATUS
+                            ZStack {
+                                if card.status == "None" {
+                                    VStack {
+                                        Spacer()
+                                        Button("Add Status") {
+                                            viewModel.clickedCard = card.position
+                                            showingStatus.toggle()
+                                        }
+                                        
+                                    }.padding(.bottom, 7.5)
+                                }
+                                else {
+                                    VStack(spacing: 1) {
+                                        Spacer()
+                                        HStack(spacing: 1) {
+                                            Spacer()
+                                            Button(action: {
+                                                viewModel.clickedCard = card.position
+                                                showingStatus.toggle()
+                                            }) {
+                                                Image(card.status)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 75, height: 75)
+                                            }
+                                            
+                                        }
+                                    }.offset(x: 5, y: 10)
+                                }
+                            }.sheet(isPresented: $showingStatus) {
+                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 2)
+                            }
+                            /*if card.status == "None" {
                             VStack {
                             Button("Status") {
                                 viewModel.clickedCard = card.position
@@ -87,13 +153,25 @@ struct PlayerTwoView: View {
                                     Spacer()
                                     HStack(spacing: 1) {
                                         Spacer()
-                                Image(card.status)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 75, height: 75)
+                                        
+                                        Button(action:  {
+                                            viewModel.clickedCard = card.position
+                                            showingStatus.toggle()
+                                        }) {
+                                            Image(card.status)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 75, height: 75)
+                                        }
+                                        .sheet(isPresented: $showingStatus) {
+                                            TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 2)
+                                        }
+                                        
+                                        
+                               
                                     }
                                 }.offset(x: 5, y: 10)
-                            }
+                            }*/
                         }
                         //SWITCHING MECHANIC
                         if isSwitching {
