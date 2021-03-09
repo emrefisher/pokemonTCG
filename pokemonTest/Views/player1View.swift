@@ -71,7 +71,9 @@ struct PlayerOneView: View {
                             VStack {
                                 HStack(spacing: 0) {
                                     Button(action: {
-                                        viewModel.playerOneData[card.position].damageTaken -= 10
+                                        if viewModel.playerOneData[card.position].damageTaken != 0 {
+                                            viewModel.playerOneData[card.position].damageTaken -= 10
+                                        }
                                     }) {
                                         Text("-   ").background(Circle()
                                             .trim(from: 0.25, to: 0.75)
@@ -86,7 +88,7 @@ struct PlayerOneView: View {
                                     Button(action: {
                                         viewModel.playerOneData[card.position].damageTaken += 10
                                     }) {
-                                        Text("+  ").background(Circle()
+                                        Text("+ ").background(Circle()
                                             .trim(from: 0.25, to: 0.75)
                                             .fill(Color.green)
                                             .frame(width: 40, height: 40)
