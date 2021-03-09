@@ -113,6 +113,7 @@ struct PlayerOneView: View {
                                 }
                                 }
                             }.padding(.horizontal, 5)
+                            .offset(y:10)
                             
                             //CARD STATUS
                             ZStack {

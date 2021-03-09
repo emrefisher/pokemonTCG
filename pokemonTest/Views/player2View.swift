@@ -113,6 +113,7 @@ struct PlayerTwoView: View {
                                 }
                                 }
                             }.padding(.horizontal, 5)
+                            .offset(y:10)
                             
                             //CARD STATUS
                             ZStack {
@@ -145,7 +146,7 @@ struct PlayerTwoView: View {
                                     }.offset(x: 5, y: 10)
                                 }
                             }.sheet(isPresented: $showingStatus) {
-                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 1)
+                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 2)
                             }
                         }
                         //SWITCHING MECHANIC
