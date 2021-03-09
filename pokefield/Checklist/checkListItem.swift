@@ -1,7 +1,5 @@
 //
 //  checkListItem.swift
-//  pokemonTest
-//
 //  Created by Emre Fisher on 2/25/21.
 //
 

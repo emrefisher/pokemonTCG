@@ -1,14 +1,12 @@
 //
-//  player1View.swift
-//  pokemonTest
-//
+//  player2View.swift
 //  Created by Emre Fisher on 3/3/21.
 //
 
 import Foundation
 import SwiftUI
 
-struct PlayerOneView: View {
+struct PlayerTwoView: View {
     
     @State var isSwitching = false
     @State var showingTypes = false
@@ -28,7 +26,7 @@ struct PlayerOneView: View {
     var body: some View {
         VStack {
             LazyVGrid(columns: columns, content: {
-                ForEach(viewModel.playerOneData) { card in
+                ForEach(viewModel.playerTwoData) { card in
                     
                     VStack {
                         ZStack {
@@ -49,13 +47,13 @@ struct PlayerOneView: View {
                                     Spacer()
                                 }.padding(.top, 15)
                                 .sheet(isPresented: $showingTypes) {
-                                    TypeListView(isPresented: $showingTypes, viewModel: viewModel, player: 1)
+                                    TypeListView(isPresented: $showingTypes, viewModel: viewModel, player: 2)
                                 }
                             }
                             else {
                                 
                                 VStack(spacing: 1) {
-                                    ForEach(viewModel.playerOneData[card.position].types, id: \.self) {type in
+                                    ForEach(viewModel.playerTwoData[card.position].types, id: \.self) {type in
                                         Image(type)
                                             .resizable()
                                            // .scaledToFit()
@@ -71,8 +69,8 @@ struct PlayerOneView: View {
                             VStack {
                                 HStack(spacing: 0) {
                                     Button(action: {
-                                        if viewModel.playerOneData[card.position].damageTaken != 0 {
-                                            viewModel.playerOneData[card.position].damageTaken -= 10
+                                        if viewModel.playerTwoData[card.position].damageTaken != 0 {
+                                            viewModel.playerTwoData[card.position].damageTaken -= 10
                                         }
                                     }) {
                                         Text("-   ").background(Circle()
@@ -83,12 +81,12 @@ struct PlayerOneView: View {
                                             .offset(x: -5)
                                     }
                                     Spacer()
-                                    Text("\(viewModel.playerOneData[card.position].damageTaken)")
+                                    Text("\(viewModel.playerTwoData[card.position].damageTaken)")
                                     Spacer()
                                     Button(action: {
-                                        viewModel.playerOneData[card.position].damageTaken += 10
+                                        viewModel.playerTwoData[card.position].damageTaken += 10
                                     }) {
-                                        Text("+ ").background(Circle()
+                                        Text("+  ").background(Circle()
                                             .trim(from: 0.25, to: 0.75)
                                             .fill(Color.green)
                                             .frame(width: 40, height: 40)
@@ -99,9 +97,9 @@ struct PlayerOneView: View {
                                 
                                 VStack {
                                 Button(action: {
-                                    viewModel.playerOneData[card.position].status = "None"
-                                    viewModel.playerOneData[card.position].damageTaken = 0
-                                    viewModel.playerOneData[card.position].types = [String]()
+                                    viewModel.playerTwoData[card.position].status = "None"
+                                    viewModel.playerTwoData[card.position].damageTaken = 0
+                                    viewModel.playerTwoData[card.position].types = [String]()
                                 }) {
                                     Text("Clear Card")
                                         .font(.system(size: 12.5))
@@ -146,16 +144,16 @@ struct PlayerOneView: View {
                                     }.offset(x: 5, y: 10)
                                 }
                             }.sheet(isPresented: $showingStatus) {
-                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 1)
+                                TypeListView2(isPresented: $showingStatus, viewModel: viewModel, player: 2)
                             }
                         }
                         //SWITCHING MECHANIC
                         if isSwitching {
                             Button("Tag-In") {
                                 withAnimation {
-                                    viewModel.playerOneData[0].position = card.position
-                                    viewModel.playerOneData[card.position].position = 0
-                                    viewModel.playerOneData.sort {
+                                    viewModel.playerTwoData[0].position = card.position
+                                    viewModel.playerTwoData[card.position].position = 0
+                                    viewModel.playerTwoData.sort {
                                         $0.position < $1.position
                                     }
                                 }
