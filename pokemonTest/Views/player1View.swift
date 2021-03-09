@@ -71,17 +71,26 @@ struct PlayerOneView: View {
                             VStack {
                                 HStack {
                                     Button("-") {
-                                        viewModel.playerOneData[card.position].damageTaken -= 10
+                                        if viewModel.playerOneData[card.position].damageTaken != 0 {
+                                            viewModel.playerOneData[card.position].damageTaken -= 10
+                                        }
                                     }
                                     Text("\(viewModel.playerOneData[card.position].damageTaken)")
                                     Button("+") {
                                         viewModel.playerOneData[card.position].damageTaken += 10
                                     }
                                 }
-                                Button("Clear Card") {
+                                Button(action: {
                                     viewModel.playerOneData[card.position].status = "None"
                                     viewModel.playerOneData[card.position].damageTaken = 0
                                     viewModel.playerOneData[card.position].types = [String]()
+                                }) {
+                                    Text("Clear Card")
+                                        .font(.system(size: 12.5))
+                                        .foregroundColor(Color.black)
+                                        .padding(.vertical, 5)
+                                        .padding(.horizontal, 10)
+                                        .background(Capsule().fill(Color.white))
                                 }
                             }.padding(.horizontal, 5)
                             
