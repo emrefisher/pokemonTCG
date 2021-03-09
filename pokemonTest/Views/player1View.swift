@@ -44,7 +44,7 @@ struct PlayerOneView: View {
                                     viewModel.clickedCard = card.position
                                     showingTypes.toggle()
                                 }) {
-                                    Text("Add Types").foregroundColor(.black)
+                                    Text("Add Types").foregroundColor(.blue)
                                 }
                                     Spacer()
                                 }.padding(.top, 15)
@@ -69,17 +69,33 @@ struct PlayerOneView: View {
                             
                             
                             VStack {
-                                HStack {
-                                    Button("-") {
-                                        if viewModel.playerOneData[card.position].damageTaken != 0 {
-                                            viewModel.playerOneData[card.position].damageTaken -= 10
-                                        }
+                                HStack(spacing: 0) {
+                                    Button(action: {
+                                        viewModel.playerOneData[card.position].damageTaken -= 10
+                                    }) {
+                                        Text("-   ").background(Circle()
+                                            .trim(from: 0.25, to: 0.75)
+                                            .fill(Color.red)
+                                            .frame(width: 40, height: 40))
+                                            .rotationEffect(.degrees(180))
+                                            .offset(x: -5)
                                     }
+                                    Spacer()
                                     Text("\(viewModel.playerOneData[card.position].damageTaken)")
-                                    Button("+") {
+                                    Spacer()
+                                    Button(action: {
                                         viewModel.playerOneData[card.position].damageTaken += 10
+                                    }) {
+                                        Text("+  ").background(Circle()
+                                            .trim(from: 0.25, to: 0.75)
+                                            .fill(Color.green)
+                                            .frame(width: 40, height: 40)
+                                                                .offset(x: 4)
+                                            )
                                     }
                                 }
+                                
+                                VStack {
                                 Button(action: {
                                     viewModel.playerOneData[card.position].status = "None"
                                     viewModel.playerOneData[card.position].damageTaken = 0
@@ -91,6 +107,8 @@ struct PlayerOneView: View {
                                         .padding(.vertical, 5)
                                         .padding(.horizontal, 10)
                                         .background(Capsule().fill(Color.white))
+                                        .offset(y:5)
+                                }
                                 }
                             }.padding(.horizontal, 5)
                             
